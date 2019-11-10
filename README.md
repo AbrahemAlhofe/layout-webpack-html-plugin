@@ -12,7 +12,7 @@ You must be running webpack on node 0.12.x or higher
 
 Install the plugin with npm:
 ```shell
-$ npm install --save-dev html-webpack-layout-plugin
+$ npm install --save-dev layout-webpack-html-plugin
 ```
 
 Basic Usage
@@ -22,19 +22,19 @@ Add the plugin to your webpack config as follows:
 ```javascript
 plugins: [
   new HtmlWebpackPlugin(),
-  new HtmlWebpackLayoutPlugin()
+  new LayoutWebpackPlugin()
 ]  
 ```
 The above configuration will actually do nothing due to the configuration defaults.
 
 As soon as you now set `layout` to a path the generated output of the HtmlWebpackPlugin will
-always add a layout. 
+always add a layout.
 ```javascript
 plugins: [
-  new HtmlWebpackPlugin({
-		layout: path.join(__dirname, 'layout.html')
-	}),
-  new HtmlWebpackLayoutPlugin()
+  new HtmlWebpackPlugin(),
+  new LayoutWebpackPlugin({
+      layout: path.join(__dirname, 'layout.html')
+  })
 ]  
 ```
 
@@ -43,27 +43,21 @@ layout.html
 <html>
 	<head></head>
 	<body>
-		{{content}}
+		{{ content }}
 	</body>
 </html>
 
 ```
 
-Even if you generate multiple files make sure that you add the HtmlWebpackLayoutPlugin **only once**:
+Even if you generate multiple files make sure that you add the LayoutWebpackPlugin **only once**:
 
 ```javascript
 plugins: [
-  new HtmlWebpackPlugin({
-		layout: path.join(__dirname, 'layout.html')
-	}),
-  new HtmlWebpackPlugin({
-		layout: path.join(__dirname, 'layout.html'),
-		filename: 'demo.html'
-	}),
-  new HtmlWebpackPlugin({
-		layout: path.join(__dirname, 'layout.html'),
-		filename: 'test.html'
-	}),
-  new HtmlWebpackLayoutPlugin()
+  new HtmlWebpackPlugin(),
+  new HtmlWebpackPlugin({ filename: 'demo.html' }),
+  new HtmlWebpackPlugin({ filename: 'test.html' }),
+  new LayoutWebpackPlugin({
+      layout : './src/layout.html'
+  })
 ]  
 ```
