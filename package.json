@@ -1,6 +1,6 @@
 {
   "name": "layout-webpack-html-plugin",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "Write html files and add layout.",
   "main": "index.js",
   "files": [
