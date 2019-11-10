@@ -11,8 +11,8 @@ class LayoutWebpackHtmlPlugin {
         compiler.hooks.compilation.tap('LayoutWebpackHtmlPlugin', function(compilation) {
 
           compilation.plugin('html-webpack-plugin-before-html-processing', function(htmlPluginData) {
-            htmlPluginData.html = that.addLayout( htmlPluginData.html, that.options);
             const filename = htmlPluginData.plugin.options.filename
+            htmlPluginData.html = that.addLayout( htmlPluginData.html, { filename, ...that.options } );
             compilation.assets[filename] = {
                 filePath() { return htmlPluginData.plugin.options.filename },
                 source() { return new Buffer(htmlPluginData.html) },
@@ -29,7 +29,10 @@ class LayoutWebpackHtmlPlugin {
 
             if (path.extname(options.layout) === '.pug') {
                 const pug = require('pug');
-                layout = pug.compile(layout)()
+                layout = pug.compile(layout, {
+                    filename : path.basename(options.filename, '.html'),
+                    basedir: __dirname
+                })()
             }
 
             var reg = new RegExp('{{ ?'+ replace +' ?}}');
