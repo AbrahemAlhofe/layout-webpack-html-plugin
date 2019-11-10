@@ -1,1 +1,1 @@
-import PAGE from './index.html';
+import PAGE from './index.pug';

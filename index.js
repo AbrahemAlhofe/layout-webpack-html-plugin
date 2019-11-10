@@ -26,6 +26,12 @@ class LayoutWebpackHtmlPlugin {
         if(options.layout){
             var replace = options.replace || 'content';
             var layout = fs.readFileSync(options.layout, 'utf-8');
+
+            if (path.extname(options.layout) === '.pug') {
+                const pug = require('pug');
+                layout = pug.compile(layout)()
+            }
+
             var reg = new RegExp('{{ ?'+ replace +' ?}}');
             html = layout.replace(reg, html);
         }

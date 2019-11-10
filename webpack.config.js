@@ -9,12 +9,17 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist')
   },
+  module : {
+    rules: [
+        { test : /\.pug$/, use: ['pug-loader'] },
+    ]
+  },
   plugins : [
     new HtmlWebpackPlugin({
-        template : './src/index.html'
+        template : './src/index.pug'
     }),
     new LayoutWebpackPlugin({
-        layout : './src/layout.html'
+        layout : './src/layout.pug'
     })
   ]
 }
