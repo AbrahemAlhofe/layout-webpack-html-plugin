@@ -38,15 +38,44 @@ plugins: [
 ]  
 ```
 
+page.html
+```html
+<html>
+   <head>
+    <script src='script.js' ></script>
+   </head>
+   <body>
+    <div>hello i'm div in page</div>
+   </body>
+</html>
+```
+
+
+
+
 layout.html   
 ```html
 <html>
-	<head></head>
-	<body>
-		{{ content }}
-	</body>
+ <head>
+  <title> hello i'm layout </title>
+ </head>
+ <body>
+  {{ content }}
+ </body>
 </html>
+```
 
+Result :
+```html
+<html>
+ <head>
+  <title> hello i'm layout </title>
+  <script src='script.js' ></script>
+ </head>
+ <body>
+  <div>hello i'm div in page</div>
+ </body>
+</html>
 ```
 
 Even if you generate multiple files make sure that you add the LayoutWebpackPlugin **only once**:
