@@ -1,6 +1,7 @@
-var fs = require('fs');
-var path = require('path');
-
+const fs = require('fs');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { JSDOM } = require('jsdom');
 
 class LayoutWebpackHtmlPlugin {
     constructor(opt) {
@@ -31,12 +32,19 @@ class LayoutWebpackHtmlPlugin {
                 const pug = require('pug');
                 layout = pug.compile(layout, {
                     filename : path.basename(options.filename, '.html'),
-                    basedir: __dirname
+                    basedir: path.dirname(options.layout)
                 })()
             }
 
             var reg = new RegExp('{{ ?'+ replace +' ?}}');
-            html = layout.replace(reg, html);
+            const domPage = new JSDOM(html).window.document;
+            const domLayout = new JSDOM(layout).window.document;
+
+            for ( let child of Array.from(domPage.head.children) ) {
+                domLayout.head.appendChild(child)
+            }
+
+            html = domLayout.documentElement.outerHTML.replace(reg, domPage.body.innerHTML);
         }
 
         return html;

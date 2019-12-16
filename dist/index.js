@@ -117,7 +117,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ind
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var pug = __webpack_require__(/*! ../node_modules/pug-runtime/index.js */ \"./node_modules/pug-runtime/index.js\");\n\nfunction template(locals) {var pug_html = \"\", pug_mixins = {}, pug_interp;pug_html = pug_html + \"\\u003Cdiv\\u003Ehello world so much\\u003C\\u002Fdiv\\u003E\";;return pug_html;};\nmodule.exports = template;\n\n//# sourceURL=webpack:///./src/index.pug?");
+eval("var pug = __webpack_require__(/*! ../node_modules/pug-runtime/index.js */ \"./node_modules/pug-runtime/index.js\");\n\nfunction template(locals) {var pug_html = \"\", pug_mixins = {}, pug_interp;pug_html = pug_html + \"\\u003Chead\\u003E\\u003Cscript src=\\\"hello mama\\\"\\u003E\\u003C\\u002Fscript\\u003E\\u003C\\u002Fhead\\u003E\\u003Cdiv\\u003Ehello world\\u003C\\u002Fdiv\\u003E\\u003Cscript src=\\\"https\\u002F\\u002Fhello.js\\\"\\u003E\\u003C\\u002Fscript\\u003E\";;return pug_html;};\nmodule.exports = template;\n\n//# sourceURL=webpack:///./src/index.pug?");
 
 /***/ }),
 

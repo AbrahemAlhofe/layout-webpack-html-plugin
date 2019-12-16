@@ -19,7 +19,7 @@ module.exports = {
         template : './src/index.pug'
     }),
     new LayoutWebpackPlugin({
-        layout : './src/layout.pug'
+        layout : path.resolve(__dirname, './src/layout.pug')
     })
   ]
 }
